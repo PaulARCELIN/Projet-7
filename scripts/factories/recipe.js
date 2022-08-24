@@ -4,12 +4,15 @@ function recipeFactory(recipeData) {
     
     const recipeCard = document.createElement('div')
     recipeCard.classList.add('recipeCard');
+    recipeCard.classList.add('card')
 
         const cardHeader = document.createElement('div')
         cardHeader.classList.add('cardHeader')
+        cardHeader.classList.add('card-body')
         
-            const title = document.createElement('h1')
+            const title = document.createElement('h2')
             title.textContent = name
+            title.classList.add('card-title')
             cardHeader.appendChild(title)
 
             const watch = document.createElement('i')

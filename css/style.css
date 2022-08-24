@@ -8,6 +8,17 @@ header {
     margin-bottom: 50px;
 }
 
+header img {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 47px;
+    /* identical to box height */
+    text-align: center;
+    color: #D04F4F;
+}
+
 #search_bar {
     text-align: center;
     position: relative;
@@ -15,7 +26,7 @@ header {
 }
 
 #search_bar input {
-    width: 100%;
+    width: calc(100% - 20px);
     height: 70px;
     background-color: #e6e6e6;
     border: #e6e6e6 solid 1px;
@@ -45,7 +56,7 @@ header {
     width: 30%;
     padding: 20px;
     position: relative;
-    max-height: 200px;
+    max-height: 250px;
     border-radius: 5px;
 }
 
@@ -57,19 +68,20 @@ header {
     
 }
 
-.cardHeader h1 {
+.cardHeader h2 {
     font-size: large;
 }
 
 .cardHeader i {
     position: absolute;
-    right: 80px;
-    top: 42px;
+    right: 90px;
+    top: 27px;
 }
 
 .cardContent {
     display: flex;
     height: 70%;
+    font-size: small;
 }
 
 .cardContent ul {
@@ -79,7 +91,6 @@ header {
 
 .cardContent li {
     list-style: none;
-    color: blue;
     width: 100%;
     padding: 0;
     white-space: nowrap;
