@@ -1,6 +1,16 @@
+@font-face {
+    font-family: 'Lato-Black';
+    src: url('lato/Lato-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('lato/Lato-Regular.ttf') format('truetype');
+}
+
 body {
     margin: 20px 100px;
-    font-family: 'Verdana';
+    font-family: 'Lato-Regular';
 }
 
 header {
@@ -67,6 +77,7 @@ header img {
     max-height: 370px;
     border-radius: 5px;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .topRecipeCard {
@@ -90,7 +101,8 @@ header img {
 }
 
 .cardHeader h2 {
-    font-size: large;
+    font-size: 18px;
+    font-weight: 400;
     width: 70%;
     white-space: nowrap;
     overflow: hidden;
@@ -152,6 +164,11 @@ header img {
 
 .dropdownSousContainer {
     display: flex;
+}
+
+.dropdownSousContainer input::placeholder{
+    color: white;
+    opacity: 1;
 }
 
 .dropdownContainer input {
