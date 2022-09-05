@@ -2,9 +2,17 @@ function recipeFactory(recipeData) {
     
     const { name, ingredients, time, description } = recipeData;
     
+    const totalRecipeCard = document.createElement('div')
+    totalRecipeCard.classList.add('totalRecipeCard')
+    totalRecipeCard.classList.add('card')
+    
+    const topRecipeCard = document.createElement('div')
+    topRecipeCard.classList.add('topRecipeCard')
+    totalRecipeCard.appendChild(topRecipeCard)
+
     const recipeCard = document.createElement('div')
     recipeCard.classList.add('recipeCard');
-    recipeCard.classList.add('card')
+    
 
         const cardHeader = document.createElement('div')
         cardHeader.classList.add('cardHeader')
@@ -54,7 +62,7 @@ function recipeFactory(recipeData) {
             cardContent.appendChild(recipeDescription)
 
         recipeCard.appendChild(cardContent)
+    totalRecipeCard.appendChild(recipeCard)
 
-
-    return recipeCard
+    return totalRecipeCard
 }

@@ -17,7 +17,12 @@
     
     <main>
         <div id="search_bar"></div>
-        <div id="filter_options"></div>
+        <div id="active_filters"></div>
+        <div class="filter_options">
+            <div id="ingredients_filter"></div>
+            <div id="ustensils_filter"></div>
+            <div id="appliances_filter"></div>
+        </div>
         <div id="recipes_gallery"></div>
     </main>
 
@@ -26,6 +31,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+<script src="scripts\utils\variables.js"></script>
+<script src="scripts\utils\activeFilters.js"></script>
+<script src="scripts\algos\filter.js"></script>
 <script src="scripts\variables\variables.js"></script>
 <script src="scripts\utils\filterDropdown.js"></script>
 <script src="scripts\factories\recipe.js"></script>

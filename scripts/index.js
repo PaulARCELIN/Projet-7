@@ -1,3 +1,6 @@
+let displayedRecipes = []
+let activeFilters = []
+
 // Fonction pour récupérer les données du fichier recipes.js
 function getRecipes() {
     return fetch("recipes.js")
@@ -17,50 +20,76 @@ function displaySearchBar() {
 
 
 // Fonction pour afficher les filtres
-function displayFilters(recipes) {
+function displayIngredientsFilters() {
     
-    var ingredientsTotal = []
-    
-    recipes.forEach(element => {
-        ingredientsTotal = ingredientsTotal.concat(element.ingredients)
-    })
+    const uniqueIngredientsList = ingredientsList(displayedRecipes);
 
-    var ingredientsList = []
+    const container = document.getElementById('ingredients_filter')
+    container.innerHTML = ""
+    const ingredientFilter = createFilterDropdown("ingredient", [uniqueIngredientsList])
 
-    ingredientsTotal.forEach(element => {
-        ingredientsList = ingredientsList.concat(element.ingredient)
-    })
-
-    var unique = ingredientsList.filter((x, i) => ingredientsList.indexOf(x) === i)
-
-    console.log(unique)
-
-    const container = document.getElementById('filter_options')
-    const ingredientFilter = createFilterDropdown("ingredient", [unique])
-    
-    
-    console.log(ingredientFilter)
-    
     container.appendChild(ingredientFilter)
 }
 
+function displayAppliancesFilters() {
+    
+    const uniqueAppliancesList = appliancesList(displayedRecipes);
+
+    const container = document.getElementById('appliances_filter')
+    container.innerHTML = ""
+    const applianceFilter = createFilterDropdown("Appareils", [uniqueAppliancesList])
+
+    container.appendChild(applianceFilter)
+}
+
+function displayUstensilsFilters() {
+    
+    const uniqueUstensilsList = ustensilsList(displayedRecipes);
+
+    const container = document.getElementById('ustensils_filter')
+    container.innerHTML = ""
+    const ustensilFilter = createFilterDropdown("Ustensiles", [uniqueUstensilsList])
+
+    container.appendChild(ustensilFilter)
+}
+
+/* function displayActiveFilters(className) {
+    const allFiltersContainer = document.getElementById("active_filters")
+    allFiltersContainer.innerHTML = ""
+    activeFilters.forEach(element => {
+        const filter = createActiveFilter(element, className)
+        allFiltersContainer.appendChild(filter)
+    })
+} */
+
 
 // Fonction pour afficher la galerie de recettes
-function displayRecipesGallery(recipes) {
+function displayRecipesGallery(recipes, searchBarInput="") {
     const container = document.getElementById('recipes_gallery')
+    container.innerHTML = ""
+    
+    displayedRecipes = []
+    
 
-    recipes.forEach(element => {
+    displayedRecipes = recipes.filter(element => {
+        return (searchBarAlgo(searchBarInput, element) && searchFiltersAlgo(activeFilters, element))  
+    });
+
+
+    displayedRecipes.forEach(element => {
         const recipeCard = recipeFactory(element);
         container.appendChild(recipeCard)
-    });
-    
+    })
 }
 
 
 function init() {
     displaySearchBar();
     displayRecipesGallery(recipes);
-    displayFilters(recipes);
+    displayIngredientsFilters();
+    displayAppliancesFilters();
+    displayUstensilsFilters();
+    filter();
 }
 
 init();

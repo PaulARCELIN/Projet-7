@@ -1,10 +1,15 @@
-function createFilterDropdown(title, itemList) {
-    const menuContainer = document.createElement('button')
-    
 
-    const menuButton = document.createElement('input');
-    menuButton.classList.add('menu-button');
-    menuButton.onclick = () => {
+function createFilterDropdown(title, itemList) {
+    const menuContainer = document.createElement('div')
+    menuContainer.classList.add('dropdownContainer')
+       
+
+    const sousContainer  = document.createElement('div')
+    sousContainer.classList.add('dropdownSousContainer')
+    menuContainer.appendChild(sousContainer)
+
+    function dropdown() {
+        
         if(buttonIcon.classList.contains('fa-chevron-down')) {
             buttonIcon.classList.remove('fa-chevron-down');
             buttonIcon.classList.add('fa-chevron-up');
@@ -17,13 +22,17 @@ function createFilterDropdown(title, itemList) {
         }
     };
 
-    const buttonValue = document.createElement('p');
-    buttonValue.textContent = title;
-    menuButton.appendChild(buttonValue);
+    const menuInput = document.createElement('input');
+    menuInput.classList.add('menu-button');
+    menuInput.setAttribute('placeholder', title)
+    menuInput.onclick = dropdown;
+    sousContainer.appendChild(menuInput);
 
     const buttonIcon = document.createElement('i');
+    buttonIcon.classList.add('chevron-dropdown')
     buttonIcon.classList.add('fa-solid', 'fa-chevron-down');
-    menuButton.appendChild(buttonIcon);
+    buttonIcon.onclick = dropdown;
+    sousContainer.appendChild(buttonIcon);
 
     
 
@@ -31,88 +40,59 @@ function createFilterDropdown(title, itemList) {
     menuList.classList.add('menu-list');
     menuList.style.display = "none";
 
-    menuContainer.appendChild(menuButton);
+    
     menuContainer.appendChild(menuList);
 
-    itemList.forEach(item => {
+    
+    itemList[0].forEach(function displayList(item) {
         const option = document.createElement('li');
+        option.classList.add('filter-option')
         option.textContent = item;
-        option.onclick = function test() {
+        option.onclick = function list() {
+            const searchBar = document.getElementById('search_input')
             menuList.style.display = "none";
-            buttonValue.textContent = item;
             buttonIcon.classList.add('fa-chevron-down');
             buttonIcon.classList.remove('fa-chevron-up');
-            if(itemSelectedCallback)
-                itemSelectedCallback(item);
+            activeFilters.push(item)
+            createActiveFilter(item, title);
+            //displayActiveFilters();
+            console.log(activeFilters)
+            displayRecipesGallery(recipes, searchBar.value, activeFilters)
+            displayIngredientsFilters(recipes, displayedRecipes)
+            displayUstensilsFilters(recipes, displayedRecipes)
+            displayAppliancesFilters(recipes, displayedRecipes)
         }; 
         menuList.appendChild(option);
     });
+
+    menuInput.onkeyup = () => {
+        menuList.innerHTML = ""
+        itemList[0].forEach(item => {
+            if(menuInput.value.length === 0 || item.includes(menuInput.value)) {
+                const option = document.createElement('li');
+                option.classList.add('filter-option')
+                option.textContent = item;
+                option.onclick = function list() {
+                    const searchBar = document.getElementById('search_input')
+                    menuList.style.display = "none";
+                    buttonIcon.classList.add('fa-chevron-down');
+                    buttonIcon.classList.remove('fa-chevron-up');
+                    activeFilters.push(item)
+                    createActiveFilter(item, title);
+                    //displayActiveFilters();
+                    console.log(activeFilters)
+                    displayRecipesGallery(recipes, searchBar.value, activeFilters)
+                    displayIngredientsFilters(recipes, displayedRecipes)
+                    displayUstensilsFilters(recipes, displayedRecipes)
+                    displayAppliancesFilters(recipes, displayedRecipes)
+                }; 
+            menuList.appendChild(option);
+            }
+        })
+    }
+
+    
 
     return menuContainer
 }
 
-
-/* function createMenu(itemList, itemSelectedCallback = undefined, defaultItem = undefined) {
-    
-    const menuContainer = document.createElement('div');
-    menuContainer.classList.add('menu-container');
-
-    if(defaultItem === undefined) {
-        defaultItem = itemList[0];
-    }
-
-    const menuButton = document.createElement('button');
-    menuButton.classList.add('menu-button');
-    menuButton.setAttribute("role", "button");
-    menuButton.setAttribute("aria-haspopup", "listbox");
-    menuButton.setAttribute("aria-expanded", "true");
-    menuButton.onclick = () => {
-        if(buttonIcon.classList.contains('fa-chevron-down')) {
-            buttonIcon.classList.remove('fa-chevron-down');
-            buttonIcon.classList.add('fa-chevron-up');
-            menuList.style.display = "block";
-        }
-        else {
-            buttonIcon.classList.add('fa-chevron-down');
-            buttonIcon.classList.remove('fa-chevron-up');
-            menuList.style.display = "none";
-        }
-    };
-
-    const buttonValue = document.createElement('p');
-    buttonValue.textContent = defaultItem;
-    menuButton.appendChild(buttonValue);
-
-    const buttonIcon = document.createElement('i');
-    buttonIcon.classList.add('fa-solid', 'fa-chevron-down');
-    menuButton.appendChild(buttonIcon);
-
-    
-
-    const menuList = document.createElement('ul');
-    menuList.classList.add('menu-list');
-    menuList.setAttribute('role', 'listbox');
-    menuList.setAttribute('aria-activedescendant', '');
-    menuList.setAttribute('aria-selected', '');
-    menuList.style.display = "none";
-
-    menuContainer.appendChild(menuButton);
-    menuContainer.appendChild(menuList);
-
-    itemList.forEach(item => {
-        const option = document.createElement('li');
-        option.textContent = item;
-        option.setAttribute("tabindex", 0)
-        option.onclick = function test() {
-            menuList.style.display = "none";
-            buttonValue.textContent = item;
-            buttonIcon.classList.add('fa-chevron-down');
-            buttonIcon.classList.remove('fa-chevron-up');
-            if(itemSelectedCallback)
-                itemSelectedCallback(item);
-        }; 
-        menuList.appendChild(option);
-    });
-
-    return menuContainer;
-}  */
