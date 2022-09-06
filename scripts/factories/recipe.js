@@ -40,24 +40,31 @@ function recipeFactory(recipeData) {
             
                 ingredients.forEach(element => {
                     const item = document.createElement('li')
+                    const name = document.createElement('str')
+                    const quantity = document.createElement('p')
+                    name.classList.add('ingredients-name')
+                    name.textContent = element.ingredient
                     function list() {
                        if(element.quantity === undefined) {
-                        item.textContent = element.ingredient
+                        quantity.textContent = ""
                        }
                        else if (element.unit === undefined) {
-                        item.textContent = element.ingredient +": "+ element.quantity
+                        quantity.textContent = ": "+ element.quantity
                        } 
                        else 
-                            item.textContent = element.ingredient +": "+ element.quantity +" "+ element.unit
+                            quantity.textContent = ": "+ element.quantity +" "+ element.unit
                     };
                     list();
 
+                    item.appendChild(name)
+                    item.appendChild(quantity)
                     ingredientList.appendChild(item)
                 });
             
             cardContent.appendChild(ingredientList)
             
             const recipeDescription = document.createElement('p')
+            recipeDescription.classList.add('description')
             recipeDescription.textContent = description      
             cardContent.appendChild(recipeDescription)
 

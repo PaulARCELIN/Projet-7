@@ -8,6 +8,11 @@
     src: url('lato/Lato-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url(roboto/Roboto-Regular.ttf) format('truetype');
+}
+
 body {
     margin: 20px 100px;
     font-family: 'Lato-Regular';
@@ -81,13 +86,13 @@ header img {
 }
 
 .topRecipeCard {
-    height: 50%;
+    height: 178px;
     background-color: #C7BEBE;
 }
 
 .recipeCard {
     background-color: #e6e6e6;
-    height: 50%;
+    height: 182px;
     padding: 10px;
     position: relative;
 }
@@ -102,7 +107,7 @@ header img {
 
 .cardHeader h2 {
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 700;
     width: 70%;
     white-space: nowrap;
     overflow: hidden;
@@ -114,29 +119,59 @@ header img {
     right: 90px;
     top: 20px;
     margin-right: 5px;
+    
+}
+
+.cardHeader p {
+    font-weight: 700;
 }
 
 .cardContent {
     display: flex;
     height: 70%;
     font-size: small;
-    
 }
 
 .cardContent ul {
     width: 60%;
     padding-left: 0;
+    margin: 0;
     
 }
 
 .cardContent li {
+    display: flex;
     list-style: none;
-    width: 100%;
+    width: 90%;
     padding: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-left: 10px;
+}
+
+.cardContent li p {
+    margin: 0;
+    padding: 0;
+}
+
+.cardContent .description {
+    font-family: 'Roboto-Regular';
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    margin-bottom: 17px;
+    margin-right: 18px;
+}
+
+.ingredients-name {
+    font-weight: 700;
 }
 
 .cardContent p {
@@ -169,6 +204,7 @@ header img {
 .dropdownSousContainer input::placeholder{
     color: white;
     opacity: 1;
+    font-size: large;
 }
 
 .dropdownContainer input {
@@ -218,7 +254,7 @@ header img {
     margin-right: 15px;
 }
 
-.color-ingredient {
+.color-Ingredients {
     background-color: #3282F7;
 }
 

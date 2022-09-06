@@ -1,4 +1,6 @@
+// Tableau des recettes à afficher
 let displayedRecipes = []
+// Tableau des filtres actifs
 let activeFilters = []
 
 // Fonction pour récupérer les données du fichier recipes.js
@@ -19,18 +21,19 @@ function displaySearchBar() {
 }
 
 
-// Fonction pour afficher les filtres
+// Fonction pour afficher le dropdown ingrédients
 function displayIngredientsFilters() {
     
     const uniqueIngredientsList = ingredientsList(displayedRecipes);
 
     const container = document.getElementById('ingredients_filter')
     container.innerHTML = ""
-    const ingredientFilter = createFilterDropdown("ingredient", [uniqueIngredientsList])
+    const ingredientFilter = createFilterDropdown("Ingredients", [uniqueIngredientsList])
 
     container.appendChild(ingredientFilter)
 }
 
+// Fonction pour afficher le dropdown appareils
 function displayAppliancesFilters() {
     
     const uniqueAppliancesList = appliancesList(displayedRecipes);
@@ -42,6 +45,7 @@ function displayAppliancesFilters() {
     container.appendChild(applianceFilter)
 }
 
+// Fonction pour afficher le dropdown ustensils
 function displayUstensilsFilters() {
     
     const uniqueUstensilsList = ustensilsList(displayedRecipes);
@@ -53,15 +57,6 @@ function displayUstensilsFilters() {
     container.appendChild(ustensilFilter)
 }
 
-/* function displayActiveFilters(className) {
-    const allFiltersContainer = document.getElementById("active_filters")
-    allFiltersContainer.innerHTML = ""
-    activeFilters.forEach(element => {
-        const filter = createActiveFilter(element, className)
-        allFiltersContainer.appendChild(filter)
-    })
-} */
-
 
 // Fonction pour afficher la galerie de recettes
 function displayRecipesGallery(recipes, searchBarInput="") {
@@ -70,12 +65,21 @@ function displayRecipesGallery(recipes, searchBarInput="") {
     
     displayedRecipes = []
     
+// ALGO 1
 
-    displayedRecipes = recipes.filter(element => {
+    /* displayedRecipes = recipes.filter(element => {
         return (searchBarAlgo(searchBarInput, element) && searchFiltersAlgo(activeFilters, element))  
-    });
+    }); */
 
+// ALGO 2
 
+    for (let element of recipes) {
+        if(searchBarAlgo(searchBarInput, element) && searchFiltersAlgo(activeFilters, element)){
+            displayedRecipes.push(element)
+        }
+    }
+
+// Un affiche chaque recette du tableau 'displayed recipes'    
     displayedRecipes.forEach(element => {
         const recipeCard = recipeFactory(element);
         container.appendChild(recipeCard)
@@ -83,6 +87,7 @@ function displayRecipesGallery(recipes, searchBarInput="") {
 }
 
 
+//Fonction 'init' pour afficher les éléments de départ
 function init() {
     displaySearchBar();
     displayRecipesGallery(recipes);

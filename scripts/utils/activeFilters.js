@@ -1,7 +1,7 @@
     function createActiveFilter(filter, className) {
         
         const allFiltersContainer = document.getElementById("active_filters")
-        //allFiltersContainer.innerHTML = ""
+        
 
         const filterContainer = document.createElement('div'); 
         filterContainer.classList.add('filterContainer')
@@ -17,14 +17,18 @@
         filterContainer.appendChild(filterClose)
 
         
+        //Fonction pour retirer le filtre actif 
         filterClose.onclick = () => {
             const searchBar = document.getElementById('search_input')
+            // On retire le conteneur
             filterContainer.remove()
+            // On retire le filtre du tableau 'activeFilters'
             let index = activeFilters.indexOf(filter)
             if (index !== -1) {
                 activeFilters.splice(index, 1);
             }
             console.log(activeFilters)
+            //On rappel les fonctions d'affichage 
             displayRecipesGallery(recipes, searchBar.value, activeFilters)
             displayIngredientsFilters(recipes, displayedRecipes)
             displayUstensilsFilters(recipes, displayedRecipes)
@@ -32,6 +36,5 @@
         }
         
         allFiltersContainer.appendChild(filterContainer)
-       //return filterContainer
     }
 

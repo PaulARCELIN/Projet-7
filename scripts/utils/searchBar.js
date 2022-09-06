@@ -1,3 +1,4 @@
+// Fonction pour créer la barre de recherche 
 function createSearchBar() {
     const container = document.createElement('div')
     
