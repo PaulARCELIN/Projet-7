@@ -68,17 +68,18 @@ function displayRecipesGallery(recipes, searchBarInput="") {
 
 // ALGO 1
 
-    displayedRecipes = recipes.filter(element => {
+   /*  displayedRecipes = recipes.filter(element => {
         return (searchBarAlgo(searchBarInput, element) && searchFiltersAlgo(activeFilters, element))  
-    });
+    }); */
+
 
 // ALGO 2
 
-    /* for (let element of recipes) {
+    for (let element of recipes) {
         if(searchBarAlgo(searchBarInput, element) && searchFiltersAlgo(activeFilters, element)){
             displayedRecipes.push(element)
         }
-    } */
+    }
 
 
 // Un affiche chaque recette du tableau 'displayed recipes'    
