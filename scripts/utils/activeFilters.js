@@ -1,3 +1,4 @@
+    //Fonction pour créer un filtre actif (conteneur + ajout du filtre au tableau des filtres actifs)
     function createActiveFilter(filter, className) {
         
         const allFiltersContainer = document.getElementById("active_filters")

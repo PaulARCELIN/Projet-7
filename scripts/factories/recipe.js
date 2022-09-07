@@ -1,3 +1,4 @@
+//Factory pour créer les cartes de recettes
 function recipeFactory(recipeData) {
     
     const { name, ingredients, time, description } = recipeData;
