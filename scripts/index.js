@@ -66,12 +66,11 @@ function displayRecipesGallery(recipes, searchBarInput="") {
     displayedRecipes = []
     
 
-// ALGO 1
+/* // ALGO 1
 
-   /*  displayedRecipes = recipes.filter(element => {
+    displayedRecipes = recipes.filter(element => {
         return (searchBarAlgo(searchBarInput, element) && searchFiltersAlgo(activeFilters, element))  
     }); */
-
 
 // ALGO 2
 
